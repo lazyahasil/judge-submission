@@ -1,0 +1,101 @@
+// tasks.json
+{
+  "version": "2.0.0",
+  "runner": "terminal",
+  "echoCommand": true,
+  "tasks": [
+    // Compile (Debug)
+    {
+      "label": "Save and compile (Debug)",
+      "type": "shell",
+      "group": "build",
+      "command": "g++",
+      "args": [
+        "${file}",
+        "-std=c++14",
+        "-g",
+        "-o",
+        "${fileDirname}/bin/${fileBasenameNoExtension}.out",
+        "-Wall"
+      ],
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": false,
+        "panel": "shared"
+      },
+      // https://code.visualstudio.com/docs/editor/tasks#_defining-a-problem-matcher
+      "problemMatcher": {
+        "owner": "cpp",
+        "fileLocation": [
+          "relative",
+          "${workspaceRoot}"
+        ],
+        "pattern": {
+          // The regular expression.
+          // Example to match: helloWorld.c:5:3: warning: implicit declaration of function ‘prinft’
+          "regexp": "^(.*):(\\d+):(\\d+):\\s+(warning|error):\\s+(.*)$",
+          "file": 1,
+          "line": 2,
+          "column": 3,
+          "severity": 4,
+          "message": 5
+        }
+      }
+    },
+    // Compile (Release)
+    {
+      "label": "Save and compile (Release)",
+      "type": "shell",
+      "group": "build",
+      "command": "g++",
+      "args": [
+        "${file}",
+        "-std=c++14",
+        "-o",
+        "${fileDirname}/bin/${fileBasenameNoExtension}.out",
+        "-Wall"
+      ],
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": false,
+        "panel": "shared"
+      },
+      // https://code.visualstudio.com/docs/editor/tasks#_defining-a-problem-matcher
+      "problemMatcher": {
+        "owner": "cpp",
+        "fileLocation": [
+          "relative",
+          "${workspaceRoot}"
+        ],
+        "pattern": {
+          // The regular expression.
+          // Example to match: helloWorld.c:5:3: warning: implicit declaration of function ‘prinft’
+          "regexp": "^(.*):(\\d+):(\\d+):\\s+(warning|error):\\s+(.*)$",
+          "file": 1,
+          "line": 2,
+          "column": 3,
+          "severity": 4,
+          "message": 5
+        }
+      }
+    },
+    // Binary execution
+    {
+      "label": "execute",
+      "command": "sh",
+      "group": "test",
+      "args": [
+        "-c",
+        "${fileDirname}/bin/${fileBasenameNoExtension}.out"
+      ],
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": false,
+        "panel": "shared"
+      }
+    }
+  ]
+}

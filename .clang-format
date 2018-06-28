@@ -1,0 +1,11 @@
+Language: Cpp
+BasedOnStyle: Google
+
+AccessModifierOffset: -4
+BreakBeforeBinaryOperators: All
+ColumnLimit: 100
+FixNamespaceComments: true
+IndentCaseLabels: false
+IndentWidth: 4
+TabWidth: 4
+UseTab: Never
