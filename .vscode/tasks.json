@@ -6,7 +6,7 @@
   "tasks": [
     // Compile (Debug)
     {
-      "label": "Save and compile (Debug)",
+      "label": "Debug: save and compile in C++",
       "type": "shell",
       "group": "build",
       "command": "g++",
@@ -15,13 +15,13 @@
         "-std=c++14",
         "-g",
         "-o",
-        "${fileDirname}/bin/${fileBasenameNoExtension}.out",
+        "${workspaceRoot}/bin/${fileBasenameNoExtension}.out",
         "-Wall"
       ],
       "presentation": {
         "echo": true,
         "reveal": "always",
-        "focus": false,
+        "focus": true,
         "panel": "shared"
       },
       // https://code.visualstudio.com/docs/editor/tasks#_defining-a-problem-matcher
@@ -45,7 +45,7 @@
     },
     // Compile (Release)
     {
-      "label": "Save and compile (Release)",
+      "label": "Release: save and compile in C++",
       "type": "shell",
       "group": "build",
       "command": "g++",
@@ -53,13 +53,13 @@
         "${file}",
         "-std=c++14",
         "-o",
-        "${fileDirname}/bin/${fileBasenameNoExtension}.out",
+        "${workspaceRoot}/bin/${fileBasenameNoExtension}.out",
         "-Wall"
       ],
       "presentation": {
         "echo": true,
         "reveal": "always",
-        "focus": false,
+        "focus": true,
         "panel": "shared"
       },
       // https://code.visualstudio.com/docs/editor/tasks#_defining-a-problem-matcher
@@ -83,17 +83,17 @@
     },
     // Binary execution
     {
-      "label": "execute",
+      "label": "Execute the C++ build",
       "command": "sh",
       "group": "test",
       "args": [
         "-c",
-        "${fileDirname}/bin/${fileBasenameNoExtension}.out"
+        "${workspaceRoot}/bin/${fileBasenameNoExtension}.out"
       ],
       "presentation": {
         "echo": true,
         "reveal": "always",
-        "focus": false,
+        "focus": true,
         "panel": "shared"
       }
     }
