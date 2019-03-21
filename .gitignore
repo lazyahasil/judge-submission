@@ -1,4 +1,8 @@
 ### Project ###
+# Vscode files #
+!/.vscode/
+/.vscode/*/
+
 # Binary files #
 bin/
 
