@@ -5,6 +5,7 @@
     "tuple": "cpp",
     "limits": "cpp",
     "ostream": "cpp",
-    "istream": "cpp"
-  },
+    "istream": "cpp",
+    "forward_list": "cpp"
+  }
 }
