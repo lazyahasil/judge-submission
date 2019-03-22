@@ -6,7 +6,7 @@
 using namespace std;
 
 constexpr int BIG_NUMBER = 100000;
-const array<pair<int, int>, 4> directions{{{-1, 0}, {1, 0}, {0, -1}, {0, 1}}};
+const array<pair<int, int>, 4> DIRECTIONS{{{-1, 0}, {1, 0}, {0, -1}, {0, 1}}};
 
 int n;
 long** aqua;
@@ -19,10 +19,9 @@ int cur_col;
 long cur_dist;
 int target_row;
 int target_col;
-long target_dist;
 
 void push_near_steps(queue<pair<int, int>>& q, int row, int col) {
-    for (const auto& direction : directions) {
+    for (const auto& direction : DIRECTIONS) {
         int near_row = row + direction.first;
         int near_col = col + direction.second;
         if (near_row >= 0 && near_row < n && near_col >= 0 && near_col < n) {

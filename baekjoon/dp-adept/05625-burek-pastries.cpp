@@ -1,16 +1,16 @@
 // Data sets can be found on http://hsin.hr/coci/archive/2012_2013/
-#include <iostream>
+#include <cstdio>
 
 using namespace std;
 
-constexpr int k_max = 1000000;
+constexpr int MAX = 1000000;
 
-int dp_x[k_max + 1] = {0};
-int dp_y[k_max + 1] = {0};
+int dp_x[MAX + 1] = {0};
+int dp_y[MAX + 1] = {0};
 
 void read_and_fill_dp(int n) {
     for (int i = 0; i < n; i++) {
-        int x_min = k_max, x_max = 0, y_min = k_max, y_max = 0;
+        int x_min = MAX, x_max = 0, y_min = MAX, y_max = 0;
 
         for (int j = 0; j < 3; j++) {
             int x, y;
@@ -35,7 +35,7 @@ int main() {
 
     read_and_fill_dp(n);
 
-    for (int i = 1; i <= k_max; i++) {
+    for (int i = 1; i <= MAX; i++) {
         dp_x[i] += dp_x[i - 1];
         dp_y[i] += dp_y[i - 1];
     }

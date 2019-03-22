@@ -1,4 +1,3 @@
-#include <algorithm>
 #include <array>
 #include <cstdio>
 #include <forward_list>
