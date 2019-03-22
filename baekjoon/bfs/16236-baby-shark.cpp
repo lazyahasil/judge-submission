@@ -5,6 +5,8 @@
 
 using namespace std;
 
+using Point = pair<int, int>;
+
 constexpr int BIG_NUMBER = 100000;
 const array<pair<int, int>, 4> DIRECTIONS{{{-1, 0}, {1, 0}, {0, -1}, {0, 1}}};
 
@@ -12,21 +14,21 @@ int n;
 long** aqua;
 bool** flags;
 long level = 2;
-queue<pair<int, int>>* cur_step_q_ptr;
-queue<pair<int, int>>* next_step_q_ptr;
+queue<Point>* step_q1;
+queue<Point>* step_q2;
 int cur_row;
 int cur_col;
 long cur_dist;
 int target_row;
 int target_col;
 
-void push_near_steps(queue<pair<int, int>>& q, int row, int col) {
+void push_near_steps(int row, int col) {
     for (const auto& direction : DIRECTIONS) {
         int near_row = row + direction.first;
         int near_col = col + direction.second;
         if (near_row >= 0 && near_row < n && near_col >= 0 && near_col < n) {
             if (!flags[near_row][near_col]) {
-                q.push(make_pair(near_row, near_col));
+                step_q2->emplace(make_pair(near_row, near_col));
             }
         }
     }
@@ -42,16 +44,16 @@ void run_bfs() {
             }
         }
     }
-    flags[cur_row][cur_col] = true;
-    push_near_steps(*cur_step_q_ptr, cur_row, cur_col);
-    cur_dist = 1;
+
+    cur_dist = 0;
     target_row = target_col = BIG_NUMBER;
+    step_q1->emplace(make_pair(cur_row, cur_col));
 
     bool fish_found = false;
     while (true) {
-        while (!cur_step_q_ptr->empty()) {
-            auto step = cur_step_q_ptr->front();
-            cur_step_q_ptr->pop();
+        while (!step_q1->empty()) {
+            auto step = step_q1->front();
+            step_q1->pop();
             if (flags[step.first][step.second]) {
                 continue;
             }
@@ -65,7 +67,7 @@ void run_bfs() {
                 }
             } else {
                 if (cur_step_value == 0 || cur_step_value == level) {
-                    push_near_steps(*next_step_q_ptr, step.first, step.second);
+                    push_near_steps(step.first, step.second);
                 } else {
                     fish_found = true;
                     tie(target_row, target_col) = step;
@@ -73,22 +75,22 @@ void run_bfs() {
             }
         }
         if (fish_found) {
-            while (!next_step_q_ptr->empty()) {
-                next_step_q_ptr->pop();
+            while (!step_q2->empty()) {
+                step_q2->pop();
             }
             break;
         }
-        if (next_step_q_ptr->empty()) {
+        if (step_q2->empty()) {
             break;
         }
-        swap(cur_step_q_ptr, next_step_q_ptr);
+        swap(step_q1, step_q2);
         cur_dist++;
     }
 }
 
 int main() {
-    cur_step_q_ptr = new queue<pair<int, int>>;
-    next_step_q_ptr = new queue<pair<int, int>>;
+    step_q1 = new queue<Point>;
+    step_q2 = new queue<Point>;
 
     scanf("%d", &n);
 
