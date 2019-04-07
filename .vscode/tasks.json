@@ -8,7 +8,10 @@
     {
       "label": "Debug: save and compile in C++",
       "type": "shell",
-      "group": "build",
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
       "command": "g++",
       "args": [
         "${file}",
@@ -22,7 +25,7 @@
         "echo": true,
         "reveal": "always",
         "focus": true,
-        "panel": "shared"
+        "panel": "dedicated"
       },
       // https://code.visualstudio.com/docs/editor/tasks#_defining-a-problem-matcher
       "problemMatcher": {
@@ -60,7 +63,7 @@
         "echo": true,
         "reveal": "always",
         "focus": true,
-        "panel": "shared"
+        "panel": "dedicated"
       },
       // https://code.visualstudio.com/docs/editor/tasks#_defining-a-problem-matcher
       "problemMatcher": {
@@ -85,7 +88,10 @@
     {
       "label": "Execute the C++ build",
       "command": "sh",
-      "group": "test",
+      "group": {
+        "kind": "test",
+        "isDefault": true
+      },
       "args": [
         "-c",
         "${workspaceRoot}/bin/${fileBasenameNoExtension}.out"
@@ -94,7 +100,7 @@
         "echo": true,
         "reveal": "always",
         "focus": true,
-        "panel": "shared"
+        "panel": "dedicated"
       }
     }
   ]
